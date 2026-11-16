@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chat cliente-servidor · Protocolos de comunicación</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- Pantalla de ingreso -->
+  <main id="ingreso" class="ingreso">
+    <form id="formIngreso" class="tarjeta">
+      <h1>Chat cliente-servidor</h1>
+      <p class="sub">Proyecto 3 · Protocolos de comunicación</p>
+      <label for="nombre">Tu nombre</label>
+      <input id="nombre" maxlength="20" autocomplete="off" required placeholder="Ej: Diego">
+      <label for="salaInicial">Sala</label>
+      <select id="salaInicial">
+        <option>General</option>
+        <option>Redes</option>
+        <option>Proyecto</option>
+      </select>
+      <button type="submit">Entrar al chat</button>
+      <p id="errorIngreso" class="error" role="alert"></p>
+    </form>
+  </main>
+
+  <!-- Aplicación -->
+  <div id="app" class="app" hidden>
+    <aside class="lateral">
+      <header>
+        <strong id="miNombre"></strong>
+        <span id="estadoConexion" class="estado desconectado">Desconectado</span>
+      </header>
+
+      <h2>Salas</h2>
+      <ul id="listaSalas" class="salas"></ul>
+
+      <h2>Conectados <span id="totalUsuarios" class="conteo"></span></h2>
+      <ul id="listaUsuarios" class="usuarios"></ul>
+
+      <h2>Servidor <button id="btnEstado" type="button" class="enlace">Actualizar</button></h2>
+      <dl id="estadoServidor" class="servidor"></dl>
+    </aside>
+
+    <section class="chat">
+      <header class="cabecera">
+        <h1 id="tituloSala"></h1>
+        <span id="latencia" class="latencia"></span>
+        <button id="btnMonitor" type="button" class="enlace">Monitor de protocolo</button>
+      </header>
+
+      <div id="mensajes" class="mensajes" aria-live="polite"></div>
+      <div id="escribiendo" class="escribiendo"></div>
+
+      <form id="formMensaje" class="redactar">
+        <input id="archivo" type="file" hidden>
+        <button id="btnArchivo" type="button" class="secundario" title="Enviar archivo (máx. 5 MB)">Adjuntar</button>
+        <input id="texto" maxlength="1000" autocomplete="off" placeholder="Escribe un mensaje…">
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+
+    <aside id="monitor" class="monitor" hidden>
+      <header>
+        <strong>Monitor de protocolo</strong>
+        <button id="btnLimpiar" type="button" class="enlace">Limpiar</button>
+      </header>
+      <p class="nota">Tramas de la aplicación. ↑ enviada por este cliente, ↓ recibida del servidor.</p>
+      <ol id="tramas" class="tramas"></ol>
+    </aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
